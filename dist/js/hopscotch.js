@@ -1424,7 +1424,7 @@
 
 
       // This is our final target scroll value.
-      scrollToVal = targetTop - getOption('scrollTopMargin'),
+      scrollToVal = targetTop - getOption('scrollTopMargin') + document.getElementById('content').scrollTop,
           scrollEl,
           yuiAnim,
           yuiEase,
@@ -1442,7 +1442,7 @@
 
       // Abrupt scroll to scroll target
       else if (!getOption('smoothScroll')) {
-          window.scrollTo(0, scrollToVal);
+          document.getElementById('content').scrollTo(0, scrollToVal);
 
           if (cb) {
             cb();
@@ -1464,7 +1464,7 @@
 
             // Use jQuery if it exists
             else if (hasJquery) {
-                jQuery('body, html').animate({ scrollTop: scrollToVal }, getOption('scrollDuration'), cb);
+                jQuery('#content').animate({ scrollTop: scrollToVal }, getOption('scrollDuration'), cb);
               }
 
               // Use my crummy setInterval scroll solution if we're using plain, vanilla Javascript.
