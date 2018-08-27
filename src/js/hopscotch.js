@@ -1407,7 +1407,7 @@ Hopscotch = function(initOptions) {
         windowBottom   = windowTop + utils.getWindowHeight(),
 
         // This is our final target scroll value.
-        scrollToVal    = targetTop - getOption('scrollTopMargin'),
+        scrollToVal    = targetTop - getOption('scrollTopMargin') + document.getElementById('content').scrollTop,
 
         scrollEl,
         yuiAnim,
@@ -1424,7 +1424,7 @@ Hopscotch = function(initOptions) {
 
     // Abrupt scroll to scroll target
     else if (!getOption('smoothScroll')) {
-      window.scrollTo(0, scrollToVal);
+      document.getElementById('content').scrollTo(0, scrollToVal);
 
       if (cb) { cb(); } // HopscotchBubble.show
     }
@@ -1448,7 +1448,7 @@ Hopscotch = function(initOptions) {
 
       // Use jQuery if it exists
       else if (hasJquery) {
-        jQuery('body, html').animate({ scrollTop: scrollToVal }, getOption('scrollDuration'), cb);
+        jQuery('#content').animate({ scrollTop: scrollToVal }, getOption('scrollDuration'), cb);
       }
 
       // Use my crummy setInterval scroll solution if we're using plain, vanilla Javascript.
@@ -1839,7 +1839,7 @@ Hopscotch = function(initOptions) {
     // loadTour if we are calling startTour directly. (When we call startTour
     // from window onLoad handler, we'll use currTour)
     if (!currTour) {
-      
+
       // Sanity check! Is there a tour?
       if(!tour){
         throw new Error('Tour data is required for startTour.');
