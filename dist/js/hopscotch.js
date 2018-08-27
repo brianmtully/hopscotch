@@ -1755,6 +1755,7 @@
           targetEl = utils.getStepTarget(step);
 
       function showBubble() {
+        bubble.setPosition(step);
         bubble.show();
         utils.invokeEventCallbacks('show', step.onShow);
       }
