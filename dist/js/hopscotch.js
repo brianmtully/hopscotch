@@ -34,7 +34,6 @@
   var HopscotchI18N;
   var customI18N;
   var customRenderer;
-  var customEscape;
   var templateToUse = 'bubble_default';
   var Sizzle = window.Sizzle || null;
   var utils;
@@ -2400,9 +2399,6 @@
      * @returns {Object} The Hopscotch object (for chaining).
      */
     this.setEscaper = function (esc) {
-      if (typeof esc === 'function') {
-        customEscape = esc;
-      }
       return this;
     };
 
